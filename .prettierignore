@@ -1,0 +1,11 @@
+
+## directories
+.cache
+node_modules
+build
+dist
+
+## files
+package-lock.json
+package.json
+**/*.map

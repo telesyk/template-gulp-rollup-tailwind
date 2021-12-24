@@ -1,0 +1,8 @@
+## directories
+.cache
+node_modules
+build
+dist
+
+## files
+**/*.map
