@@ -1,3 +1,7 @@
+const customJs = require('./custom');
+
+require('./custom');
+
 function testFun() {
   const a = 2;
   const b = 3;
@@ -9,4 +13,5 @@ const testFun2 = () => {
   return res1 * 2;
 };
 
-testFun2();
+console.debug(testFun2())
+customJs();
