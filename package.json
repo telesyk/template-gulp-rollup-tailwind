@@ -4,8 +4,8 @@
   "description": "Custom boilerplate for simple project with gulp automation",
   "main": "index.js",
   "scripts": {
-    "build": "NODE_ENV='production' gulp",
-    "build:dev": "NODE_ENV='development' gulp buildDev",
+    "build": "NODE_ENV='production' gulp buildTask",
+    "build:dev": "NODE_ENV='development' gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "telesyk",
@@ -20,6 +20,7 @@
     "gulp": "^4.0.2",
     "gulp-better-rollup": "^4.0.1",
     "gulp-if": "^3.0.0",
+    "gulp-inject": "^5.0.5",
     "gulp-nunjucks-render": "^2.2.3",
     "gulp-postcss": "^9.0.1",
     "gulp-rename": "^2.0.0",

@@ -1,7 +1,9 @@
+const echo = require('./customEcho');
+
 const customJs = () => {
   const doc = document.body;
 
-  console.debug('[debug]', doc.clientWidth);
+  echo.log(doc.clientWidth);
 
   return doc;
 };

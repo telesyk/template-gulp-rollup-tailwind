@@ -16,9 +16,10 @@ const postcss = require('gulp-postcss');
 const discardComments = require('postcss-discard-comments');
 const autoprefixer = require('autoprefixer');
 const nunjucks = require('gulp-nunjucks-render');
+const inject = require('gulp-inject');
 
 const isProduction = process.env.NODE_ENV === 'production' || false; // is NODE_ENV === 'production'
-console.debug('[Build is for production]', isProduction); // debug purpose only
+console.debug(`[Build is for ${!isProduction ? 'development' : 'production'}]`); // debug purpose only
 const destDir = !isProduction ? 'dist' : 'build';
 const initSrcMaps = { loadMaps: !isProduction };
 const errorMsg = '[Error] ';
@@ -48,6 +49,7 @@ const path = {
     images: `${destDir}/assets/images/`,
     vendor: `${destDir}/assets/vendor/`,
   },
+  tmp: '.tmp/'
 };
 
 function webserver() {
@@ -57,6 +59,7 @@ function webserver() {
     },
     host: 'localhost',
     port: 3000,
+    open: false,
   });
 }
 
@@ -72,7 +75,7 @@ const ifProduction = (cb) => {
 function html() {
   return src(path.src.html)
     .pipe(nunjucks({ path: path.src.templates }))
-    .pipe(dest(path.dest.base))
+    .pipe(dest(path.tmp))
     .pipe(reload({ stream: true }))
 }
 
@@ -117,6 +120,26 @@ function vendor() {
     .pipe(dest(path.dest.vendor))
 }
 
+/* Inject custom CSS & JS */
+function injectCSSJS() {
+  const target = src(path.tmp + '*.html');
+  const assets = [
+    path.dest.assets + '*.js',
+    path.dest.assets + '*.css'
+  ];
+  const sources = src(assets, {
+    read: false,
+  });
+  const options = {
+    ignorePath: `${destDir}`,
+    addRootSlash: false,
+  };
+
+  return target
+    .pipe(inject(sources, options))
+    .pipe(dest(path.dest.base));
+}
+
 function clean(cb) {
   del([path.dest + '*'], cb);
 }
@@ -127,8 +150,8 @@ function watching() {
   watch(path.watch.js, { ignoreInitial: false }, javascript);
 }
 
-const build = parallel(html, styles, vendor, javascript);
+const build = series(parallel(html, styles, vendor, javascript), injectCSSJS);
 const serve = series(build, parallel(watching, webserver));
 
-exports.buildDev = series(clean, serve);
-exports.default = series(clean, build);
+exports.buildTask = series(clean, build);
+exports.default = series(clean, serve);

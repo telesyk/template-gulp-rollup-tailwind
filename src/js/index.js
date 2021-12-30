@@ -1,17 +1,9 @@
 const customJs = require('./custom');
+const echo = require('./customEcho');
 
-require('./custom');
+echo.log('this is Info console');
+echo.warn('this is Warning console');
+echo.err('this is Error console');
+// echo.warn(testFun2())
 
-function testFun() {
-  const a = 2;
-  const b = 3;
-  return a * b;
-};
-
-const testFun2 = () => {
-  const res1 = testFun();
-  return res1 * 2;
-};
-
-console.debug(testFun2())
 customJs();
