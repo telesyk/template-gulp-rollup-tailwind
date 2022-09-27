@@ -6,6 +6,10 @@ dist
 tmp
 .tmp
 package-lock.json
+.yarn
+yarn.lock
+.yarnrc.yml
+.editorconfig
 
-## files
+## project
 **/*.map
