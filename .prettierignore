@@ -8,4 +8,5 @@ dist
 ## files
 package-lock.json
 package.json
+yarn.lock
 **/*.map
