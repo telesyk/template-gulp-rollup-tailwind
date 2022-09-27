@@ -1,10 +1,11 @@
-## directories
+## root
 .cache
 node_modules
 build
 dist
 tmp
 .tmp
+package-lock.json
 
 ## files
 **/*.map
