@@ -1,0 +1,88 @@
+// Override Bootstrap's Sass default variables
+//
+// Nearly all variables in Bootstrap are written with the `!default` flag.
+// This allows you to override the default values of those variables before
+// you import Bootstrap's source Sass files.
+//
+// Overriding the default variable values is the best way to customize your
+// CSS without writing _new_ styles. For example, change you can either change
+// `$body-color` or write more CSS that override's Bootstrap's CSS like so:
+// `body { color: red; }`.
+
+
+//
+// Bring in Bootstrap
+//
+
+// Option 1
+//
+// Import all of Bootstrap's CSS
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+@import "../../node_modules/bootstrap-icons/font/bootstrap-icons.scss";
+
+// Option 2
+//
+// Place variable overrides first, then import just the styles you need. Note that some stylesheets are required no matter what.
+
+// // Toggle global options
+// $enable-gradients: true;
+// $enable-shadows: true;
+
+// $offcanvas-box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
+
+// // Customize some defaults
+// $body-color: #333;
+// $body-bg: #fff;
+// $border-radius: .4rem;
+// $success: #7952b3;
+
+// // Required
+// @import "../../node_modulesbootstrap/scss/functions";
+// @import "../../node_modulesbootstrap/scss/variables";
+// @import "../../node_modulesbootstrap/scss/maps";
+// @import "../../node_modulesbootstrap/scss/mixins";
+// @import "../../node_modulesbootstrap/scss/utilities";
+// @import "../../node_modulesbootstrap/scss/root";
+// @import "../../node_modulesbootstrap/scss/reboot";
+
+// @import "../../node_modulesbootstrap/scss/type";
+// // @import "../../node_modulesbootstrap/scss/images";
+// @import "../../node_modulesbootstrap/scss/containers";
+// @import "../../node_modulesbootstrap/scss/grid";
+// // @import "../../node_modulesbootstrap/scss/tables";
+// // @import "../../node_modulesbootstrap/scss/forms";
+// @import "../../node_modulesbootstrap/scss/buttons";
+// @import "../../node_modulesbootstrap/scss/transitions";
+// @import "../../node_modulesbootstrap/scss/dropdown";
+// // @import "../../node_modulesbootstrap/scss/button-group";
+// // @import "../../node_modulesbootstrap/scss/nav";
+// // @import "../../node_modulesbootstrap/scss/navbar"; // Requires nav
+// // @import "../../node_modulesbootstrap/scss/card";
+// // @import "../../node_modulesbootstrap/scss/breadcrumb";
+// // @import "../../node_modulesbootstrap/scss/accordion";
+// // @import "../../node_modulesbootstrap/scss/pagination";
+// // @import "../../node_modulesbootstrap/scss/badge";
+// // @import "../../node_modulesbootstrap/scss/alert";
+// // @import "../../node_modulesbootstrap/scss/progress";
+// // @import "../../node_modulesbootstrap/scss/list-group";
+// @import "../../node_modulesbootstrap/scss/close";
+// // @import "../../node_modulesbootstrap/scss/toasts";
+// @import "../../node_modulesbootstrap/scss/modal"; // Requires transitions
+// // @import "../../node_modulesbootstrap/scss/tooltip";
+// @import "../../node_modulesbootstrap/scss/popover";
+// // @import "../../node_modulesbootstrap/scss/carousel";
+// // @import "../../node_modulesbootstrap/scss/spinners";
+// @import "../../node_modulesbootstrap/scss/offcanvas"; // Requires transitions
+// // @import "../../node_modulesbootstrap/scss/placeholders";
+
+// // Helpers
+// // @import "helpers";
+
+// // Utilities
+// @import "../../node_modulesbootstrap/scss/utilities/api";
+
+
+//
+// Custom styles
+//

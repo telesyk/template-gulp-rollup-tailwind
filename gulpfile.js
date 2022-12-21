@@ -2,21 +2,20 @@ const { series, parallel, src, dest, watch } = require('gulp');
 const del = require('delete');
 const rename = require('gulp-rename');
 const browserSync = require('browser-sync');
-const reload = browserSync.reload;
 const gulpif = require('gulp-if');
 const sourcemaps = require('gulp-sourcemaps');
 const uglify = require('gulp-uglify');
 const rollup = require('gulp-better-rollup');
-const babel = require('rollup-plugin-babel');
-const commonjs = require('rollup-plugin-commonjs');
-const resolve = require('rollup-plugin-node-resolve');
+const babel = require('@rollup/plugin-babel');
+const commonjs = require('@rollup/plugin-commonjs');
+const resolve = require('@rollup/plugin-node-resolve');
 const sass = require('gulp-sass')(require('sass'));
 const cssnano = require('cssnano');
 const postcss = require('gulp-postcss');
 const discardComments = require('postcss-discard-comments');
 const autoprefixer = require('autoprefixer');
 const nunjucks = require('gulp-nunjucks-render');
-const inject = require('gulp-inject');
+const { reload, stream } = browserSync;
 
 const isProduction = process.env.NODE_ENV === 'production' || false; // is NODE_ENV === 'production'
 console.debug(`[Build is for ${!isProduction ? 'development' : 'production'}]`); // debug purpose only
@@ -49,7 +48,6 @@ const path = {
     images: `${destDir}/assets/images/`,
     vendor: `${destDir}/assets/vendor/`,
   },
-  tmp: '.tmp/'
 };
 
 function webserver() {
@@ -74,9 +72,11 @@ const ifProduction = (cb) => {
 /* HTML */
 function html() {
   return src(path.src.html)
-    .pipe(nunjucks({ path: path.src.templates }))
-    .pipe(dest(path.tmp))
-    .pipe(reload({ stream: true }))
+    .pipe(nunjucks({ 
+      path: [path.src.templates],
+    }))
+    .pipe(dest(path.dest.base))
+    .pipe(stream({ match: '**/*.html' }))
 }
 
 /* STYLES */
@@ -102,7 +102,7 @@ function styles() {
 /* JS */
 function javascript() {
   const options = {
-    plugins: [babel(), resolve(), commonjs()]
+    plugins: [babel({ babelHelpers: 'bundled' }), resolve(), commonjs()]
   };
   return src(path.src.js)
     .pipe(sourcemaps.init(initSrcMaps))
@@ -120,24 +120,16 @@ function vendor() {
     .pipe(dest(path.dest.vendor))
 }
 
-/* Inject custom CSS & JS */
-function injectCSSJS() {
-  const target = src(path.tmp + '*.html');
-  const assets = [
-    path.dest.assets + '*.js',
-    path.dest.assets + '*.css'
-  ];
-  const sources = src(assets, {
-    read: false,
-  });
-  const options = {
-    ignorePath: `${destDir}`,
-    addRootSlash: false,
-  };
+/* IMAGES */
+function images() {
+  return src(path.src.images)
+    .pipe(dest(path.dest.images))
+}
 
-  return target
-    .pipe(inject(sources, options))
-    .pipe(dest(path.dest.base));
+/* FONTS */
+function fonts() {
+  return src(path.src.fonts)
+    .pipe(dest(path.dest.fonts))
 }
 
 function clean(cb) {
@@ -147,10 +139,12 @@ function clean(cb) {
 function watching() {
   watch(path.watch.html, { ignoreInitial: false }, html);
   watch(path.watch.styles, { ignoreInitial: false }, styles);
+  watch(path.watch.images, { ignoreInitial: false }, images);
+  watch(path.watch.fonts, { ignoreInitial: false }, fonts);
   watch(path.watch.js, { ignoreInitial: false }, javascript);
 }
 
-const build = series(parallel(html, styles, vendor, javascript), injectCSSJS);
+const build = parallel(html, styles, vendor, images, fonts, javascript);
 const serve = series(build, parallel(watching, webserver));
 
 exports.buildTask = series(clean, build);

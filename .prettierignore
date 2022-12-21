@@ -1,5 +1,6 @@
 
 ## directories
+.yarn
 .cache
 node_modules
 build
