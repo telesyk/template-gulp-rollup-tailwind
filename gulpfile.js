@@ -47,6 +47,7 @@ const path = {
     images: `${destDir}/assets/images/`,
     vendor: `${destDir}/assets/vendor/`,
   },
+  tailwindConf: './src/tailwind.config.js',
 };
 
 function webserver() {
@@ -81,15 +82,12 @@ function styles() {
 
   let plugins = isProduction
     ? [
-        tailwindcss('./src/tailwind.config.js'),
+        tailwindcss(path.tailwindConf),
         discardComments({ removeAll: true }),
         autoprefixer('last 2 versions', '> 1%'),
         cssnano(),
       ]
-    : [
-        autoprefixer('last 2 versions', '> 1%'),
-        tailwindcss('./src/tailwind.config.js'),
-      ];
+    : [autoprefixer('last 2 versions', '> 1%'), tailwindcss(path.tailwindConf)];
 
   return src(path.src.styles)
     .pipe(sourcemaps.init())
@@ -99,11 +97,7 @@ function styles() {
       console.error(message);
     })
     .pipe(postcss(plugins))
-    .pipe(
-      isProduction
-        ? rename({ extname: '.min.css' })
-        : rename({ extname: '.dev.css' })
-    )
+    .pipe(gulpif(isProduction, rename({ extname: '.min.css' })))
     .pipe(sourcemaps.write('.'))
     .pipe(dest(path.dest.assets))
     .pipe(reload({ stream: true }));
@@ -118,11 +112,7 @@ function javascript() {
     .pipe(sourcemaps.init(initSrcMaps))
     .pipe(rollup(options, 'umd'))
     .pipe(gulpif(isProduction, uglify()))
-    .pipe(
-      isProduction
-        ? rename({ extname: '.min.js' })
-        : rename({ extname: '.dev.js' })
-    )
+    .pipe(gulpif(isProduction, rename({ extname: '.min.js' })))
     .pipe(sourcemaps.write('.'))
     .pipe(dest(path.dest.assets))
     .pipe(reload({ stream: true }));

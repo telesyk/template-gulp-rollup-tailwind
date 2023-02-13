@@ -1,4 +1,5 @@
 {% set page_name = 'BrandName' %}
+{% set page_pre_name = 'Page Title' %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +10,7 @@
   <meta name="description" content="Template of basic markup" />
   <meta name="theme-color" content="#222">
   <link rel="icon" href="assets/images/favicon.ico" />
-  <title>{{ page_name }} | SSS</title>
+  <title>{{ page_pre_name }} | {{ page_name }}</title>
   <link rel="stylesheet" href="assets/index.css">
 </head>
 
@@ -26,12 +27,6 @@
     </main>
     <footer class="page__footer"></footer>
   </div>
-  <!-- 
-      Patch for Popper error:
-      "ReferenceError: process is not defined (setOptions	@	createPopper.js:81)"
-      Solution from: https://github.com/cljsjs/packages/issues/1579
-    -->
-  <script>var process = { env: {} };</script>
   <script src="assets/index.js"></script>
 </body>
 
