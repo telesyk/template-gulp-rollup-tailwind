@@ -67,6 +67,10 @@ function html() {
     .pipe(
       nunjucks({
         path: [path.src.templates],
+        data: {
+          GLOBAL_CSS_SUFIX: isProduction ? 'min.' : '',
+          GLOBAL_JS_SUFIX: isProduction ? 'min.' : '',
+        },
       })
     )
     .pipe(dest(path.dest.base))
