@@ -1,12 +1,14 @@
 ## root
-.cache
-node_modules
-build
-dist
-tmp
-.tmp
+.cache/
+.vscode/
+node_modules/
+build/
+dist/
+tmp/
+.tmp/
+.yarn/
+
 package-lock.json
-.yarn
 yarn.lock
 .yarnrc.yml
 .editorconfig

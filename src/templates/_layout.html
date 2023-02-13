@@ -1,35 +1,38 @@
 {% set page_name = 'BrandName' %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html, charset=utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Template of basic markup" />
-    <meta name="theme-color" content="#222">
-    <link rel="icon" href="assets/images/favicon.ico" />
-    <title>{{ page_name }} | SSS</title>
-    <link rel="stylesheet" href="assets/index.css">
-  </head>
-  <body>
-    <noscript>
-      <h1>Sorry! Your browser does not support JavaScript!</h1>
-    </noscript> 
-    <div class="page min-vh-100">
-      <header class="page__header">
-        {% block header %}{% endblock %}
-      </header>
-      <main class="page__main">
-        {% block content %}{% endblock %}
-      </main>
-      <footer class="page__footer"></footer>
-    </div>
-    <!-- 
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html, charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Template of basic markup" />
+  <meta name="theme-color" content="#222">
+  <link rel="icon" href="assets/images/favicon.ico" />
+  <title>{{ page_name }} | SSS</title>
+  <link rel="stylesheet" href="assets/index.css">
+</head>
+
+<body>
+  <noscript>
+    <h1>Sorry! Your browser does not support JavaScript!</h1>
+  </noscript>
+  <div class="page">
+    <header class="page__header">
+      {% block header %}{% endblock %}
+    </header>
+    <main class="page__main">
+      {% block content %}{% endblock %}
+    </main>
+    <footer class="page__footer"></footer>
+  </div>
+  <!-- 
       Patch for Popper error:
       "ReferenceError: process is not defined (setOptions	@	createPopper.js:81)"
       Solution from: https://github.com/cljsjs/packages/issues/1579
     -->
-    <script>var process = {env: {}};</script>
-    <script src="assets/index.js"></script>
-  </body>
+  <script>var process = { env: {} };</script>
+  <script src="assets/index.js"></script>
+</body>
+
 </html>
