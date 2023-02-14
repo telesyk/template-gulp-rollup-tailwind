@@ -1,6 +1,6 @@
 {
   "name": "template-gulp-rollup-tailwind",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "template-gulp-rollup-tailwind",
   "scripts": {
     "dev": "NODE_ENV='development' gulp",
