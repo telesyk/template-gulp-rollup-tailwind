@@ -1,11 +1,51 @@
 .container {
-  @apply mx-auto px-4 max-w-screen-xl;
-
-  &-fluid {
-    @apply mx-auto px-4;
-  }
+  @apply mx-auto px-4 max-w-screen-lg;
 }
 
 .page {
-  @apply p-12 bg-sky-300;
+  @apply min-h-screen p-12 bg-gradient-to-r from-indigo-500 to-pink-500;
+
+  &__main {
+    @apply text-gray-50;
+  }
+}
+
+.navbar {
+  @apply flex justify-between p-4 rounded-md backdrop-blur-xl bg-sky-500/20 text-white;
+}
+
+.section-1 {
+  @apply my-4 p-4 rounded-md bg-indigo-500/20;
+}
+
+.starter-template {
+  @apply my-4 p-4 rounded-md bg-pink-500/20;
+}
+
+.title {
+  &-xl {
+    @apply my-6 text-4xl font-bold;
+  }
+  &-lg {
+    @apply my-4 text-2xl font-bold;
+  }
+  &-md {
+    @apply my-2 text-xl font-bold;
+  }
+}
+
+.btn {
+  @apply px-4 py-2 rounded-sm transition-all bg-gray-50 text-gray-900;
+
+  &-primary {
+    @apply bg-indigo-400 hover:bg-indigo-300;
+  }
+
+  &-secondary {
+    @apply bg-pink-400 hover:bg-pink-300;
+  }
+}
+
+.code {
+  @apply my-4 p-2 border rounded  bg-slate-50 border-gray-500 text-gray-700;
 }

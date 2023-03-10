@@ -16,11 +16,13 @@ const { reload, stream } = browserSync;
 
 const isProduction = process.env.NODE_ENV === 'production' || false; // is NODE_ENV === 'production'
 
-console.debug(`[Build is for ${!isProduction ? 'development' : 'production'}]`); // debug purpose only
+console.debug(
+  `🛠️ Build is for ${!isProduction ? 'development 👷' : 'production 🚀'}`
+); // debug purpose only
 
 const destDir = !isProduction ? 'dist' : 'build';
 const initSrcMaps = { loadMaps: !isProduction };
-const errorMsg = '[Error] ';
+const errorMsg = '🚨 ';
 
 const path = {
   src: {
