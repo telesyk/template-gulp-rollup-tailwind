@@ -58,7 +58,7 @@ function webserver() {
       baseDir: destDir,
     },
     host: 'localhost',
-    port: 3000,
+    port: !isProduction ? 3000 : 8888,
     open: false,
   });
 }
@@ -155,4 +155,5 @@ const build = parallel(html, styles, vendor, images, fonts, javascript);
 const serve = series(build, parallel(watching, webserver));
 
 exports.buildTask = series(clean, build);
+exports.serveBuildTask = series(clean, build, webserver);
 exports.default = series(clean, serve);

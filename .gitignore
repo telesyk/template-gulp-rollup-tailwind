@@ -8,6 +8,7 @@ tmp/
 .tmp/
 .yarn/
 
+.DS_Store
 package-lock.json
 yarn.lock
 .yarnrc.yml

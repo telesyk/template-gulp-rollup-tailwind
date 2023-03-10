@@ -1,0 +1,143 @@
+{% set GLOBAL_NAME = 'Samples page' %}
+{% set GLOBAL_PRE_NAME = 'Page Title' %}
+{% set GLOBAL_SEO_NAME = 'My website SEO Title' %}
+{% set GLOBAL_SEO_DESCRIPTION = 'Page SEO description' %}
+{% set GLOBAL_SEO_KEYWORDS = 'Page, SEO, keywords' %}
+{% extends "_layout.html" %}
+{% block header %}
+{% include "sections/header.html" %}
+<!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css"> -->
+<style>
+  /* Highlight theme */
+  pre code.hljs {
+    display: block;
+    overflow-x: auto;
+    padding: 1em
+  }
+
+  code.hljs {
+    padding: 3px 5px
+  }
+
+  .hljs {
+    color: #abb2bf;
+    background: #282c34
+  }
+
+  .hljs-comment,
+  .hljs-quote {
+    color: #5c6370;
+    font-style: italic
+  }
+
+  .hljs-doctag,
+  .hljs-formula,
+  .hljs-keyword {
+    color: #c678dd
+  }
+
+  .hljs-deletion,
+  .hljs-name,
+  .hljs-section,
+  .hljs-selector-tag,
+  .hljs-subst {
+    color: #e06c75
+  }
+
+  .hljs-literal {
+    color: #56b6c2
+  }
+
+  .hljs-addition,
+  .hljs-attribute,
+  .hljs-meta .hljs-string,
+  .hljs-regexp,
+  .hljs-string {
+    color: #98c379
+  }
+
+  .hljs-attr,
+  .hljs-number,
+  .hljs-selector-attr,
+  .hljs-selector-class,
+  .hljs-selector-pseudo,
+  .hljs-template-variable,
+  .hljs-type,
+  .hljs-variable {
+    color: #d19a66
+  }
+
+  .hljs-bullet,
+  .hljs-link,
+  .hljs-meta,
+  .hljs-selector-id,
+  .hljs-symbol,
+  .hljs-title {
+    color: #61aeee
+  }
+
+  .hljs-built_in,
+  .hljs-class .hljs-title,
+  .hljs-title.class_ {
+    color: #e6c07b
+  }
+
+  .hljs-emphasis {
+    font-style: italic
+  }
+
+  .hljs-strong {
+    font-weight: 700
+  }
+
+  .hljs-link {
+    text-decoration: underline
+  }
+</style>
+{% endblock %}
+{% block content %}
+<!-- Hero example -->
+<div class="container my-8">
+  <div class="section-1">
+    <h1 class="title-xl">Title XL</h1>
+    <div class="mx-auto">
+      <p class="fs-5 mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most
+        popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive
+        prebuilt components, and powerful JavaScript plugins.</p>
+    </div>
+  </div>
+  <div class="section-2">
+    <h2 class="title-lg">Buttons</h2>
+    <div class="">
+      <button type="button" class="btn btn-primary">Primary</button>
+      <button type="button" class="btn btn-secondary">Secondary</button>
+    </div>
+    <div class="">
+      <!-- Code samples -->
+      <pre class="code language-html"><code>&lt;button type="button" class="btn btn-primary"&gt;Primary&lt;/button&gt;
+</code></pre>
+      <pre class="code language-html"><code>&lt;button type="button" class="btn btn-secondary"&gt;Secondary&lt;/button&gt;
+</code></pre>
+    </div>
+    <a href="/" title="home">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+        class="w-6 h-6 inline-block mr-1">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+      </svg>
+      <span>Home</span>
+    </a>
+  </div>
+</div>
+<!-- /.container -->
+<!-- <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script> -->
+<script type="module">
+  import hljs from 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/es/highlight.min.js';
+  // hljs.registerLanguage('html', html);
+  document.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelectorAll('pre code').forEach((el) => {
+      hljs.highlightElement(el);
+    });
+  });
+</script>
+{% endblock %}

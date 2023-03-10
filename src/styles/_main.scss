@@ -15,11 +15,11 @@
 }
 
 .section-1 {
-  @apply my-4 p-4 rounded-md bg-indigo-500/20;
+  @apply p-4 rounded-md bg-indigo-500/20;
 }
 
-.starter-template {
-  @apply my-4 p-4 rounded-md bg-pink-500/20;
+.section-2 {
+  @apply p-4 rounded-md bg-pink-500/20;
 }
 
 .title {
@@ -47,5 +47,5 @@
 }
 
 .code {
-  @apply my-4 p-2 border rounded  bg-slate-50 border-gray-500 text-gray-700;
+  @apply my-4 rounded overflow-hidden;
 }

@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "NODE_ENV='development' gulp",
     "build": "NODE_ENV='production' gulp buildTask",
+    "serve:build": "NODE_ENV='production' gulp serveBuildTask",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "telesyk",
