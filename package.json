@@ -1,6 +1,6 @@
 {
   "name": "template-gulp-rollup-tailwind",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "template-gulp-rollup-tailwind",
   "scripts": {
     "dev": "NODE_ENV='development' gulp",
@@ -11,47 +11,45 @@
   "author": "telesyk",
   "license": "ISC",
   "dependencies": {
-    "tailwindcss": "^3.2.6",
+    "tailwindcss": "^3.3.1",
     "yarn-upgrade-all": "^0.7.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.12",
-    "@babel/preset-env": "^7.20.2",
+    "@babel/core": "^7.21.4",
+    "@babel/preset-env": "^7.21.4",
     "@rollup/plugin-babel": "^6.0.3",
-    "@rollup/plugin-commonjs": "^24.0.1",
-    "@rollup/plugin-node-resolve": "^15.0.1",
-    "autoprefixer": "^10.4.13",
-    "browser-sync": "^2.27.11",
-    "cssnano": "^5.1.14",
+    "@rollup/plugin-commonjs": "^24.1.0",
+    "@rollup/plugin-node-resolve": "^15.0.2",
+    "@tailwindcss/nesting": "^0.0.0-insiders.565cd3e",
+    "autoprefixer": "^10.4.14",
+    "browser-sync": "^2.29.1",
+    "cssnano": "^6.0.0",
     "delete": "^1.1.0",
-    "eslint": "^7.32.0 || ^8.2.0",
+    "eslint": "^8.38.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-prettier": "^8.6.0",
-    "eslint-plugin-import": "^2.25.2",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
     "gulp": "^4.0.2",
     "gulp-better-rollup": "^4.0.1",
     "gulp-if": "^3.0.0",
     "gulp-nunjucks-render": "^2.2.3",
     "gulp-postcss": "^9.0.1",
     "gulp-rename": "^2.0.0",
-    "gulp-sass": "^5.1.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-uglify": "^3.0.2",
     "postcss": "^8.4.21",
-    "prettier": "^2.8.4",
-    "rollup": "^3.15.0",
-    "sass": "^1.58.0"
+    "postcss-import": "^15.1.0",
+    "prettier": "^2.8.7",
+    "rollup": "^3.20.2"
   },
   "keywords": [
     "babel",
-    "bootstrap",
     "gulp",
     "gulp-starter",
     "nunjucks",
     "postcss",
     "prettier",
     "rollup",
-    "tailwindcss",
-    "scss"
+    "tailwindcss"
   ]
 }
