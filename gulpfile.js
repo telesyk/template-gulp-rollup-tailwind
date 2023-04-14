@@ -9,7 +9,6 @@ const rollup = require('gulp-better-rollup');
 const babel = require('@rollup/plugin-babel');
 const commonjs = require('@rollup/plugin-commonjs');
 const resolve = require('@rollup/plugin-node-resolve');
-const sass = require('gulp-sass')(require('sass'));
 const postcss = require('gulp-postcss');
 const nunjucks = require('gulp-nunjucks-render');
 const { reload, stream } = browserSync;
@@ -22,14 +21,14 @@ console.debug(
 
 const destDir = !isProduction ? 'dist' : 'build';
 const initSrcMaps = { loadMaps: !isProduction };
-const errorMsg = '🚨 ';
+const errorMsg = '🚨🚨🚨 ';
 
 const path = {
   src: {
     js: 'src/js/index.js',
     html: 'src/*.html',
     templates: 'src/templates',
-    styles: 'src/styles/index.scss',
+    styles: 'src/styles/index.css',
     fonts: 'src/fonts/**/*.*',
     images: 'src/images/**/*.*',
     vendor: 'src/vendor/**/*.*',
@@ -37,7 +36,7 @@ const path = {
   watch: {
     js: 'src/js/**/*.js',
     html: 'src/**/*.html',
-    styles: 'src/styles/**/*.scss',
+    styles: 'src/styles/**/*.css',
     fonts: 'src/fonts/**/*.*',
     images: 'src/images/**/*.*',
     vendor: 'src/vendor/**/*.*',
@@ -85,24 +84,32 @@ function styles() {
   const autoprefixer = require('autoprefixer');
   const cssnano = require('cssnano');
   const discardComments = require('postcss-discard-comments');
+  const pcssImport = require('postcss-import');
+  const nesting = require('@tailwindcss/nesting');
 
   let plugins = isProduction
     ? [
+        pcssImport(), // Important to include postcss-import before tailwindcss config
+        nesting,
         tailwindcss(path.tailwindConf),
-        discardComments({ removeAll: true }),
         autoprefixer('last 2 versions', '> 1%'),
+        discardComments({ removeAll: true }),
         cssnano(),
       ]
-    : [autoprefixer('last 2 versions', '> 1%'), tailwindcss(path.tailwindConf)];
+    : [
+        pcssImport(), // Important to include postcss-import before tailwindcss config
+        nesting,
+        tailwindcss(path.tailwindConf),
+        autoprefixer('last 2 versions', '> 1%'),
+      ];
 
   return src(path.src.styles)
     .pipe(sourcemaps.init())
-    .pipe(sass())
+    .pipe(postcss(plugins))
     .on('error', function (err) {
       const message = `${errorMsg} ${err.message}|${err.fileName}|[${err.lineNumber}]`;
       console.error(message);
     })
-    .pipe(postcss(plugins))
     .pipe(gulpif(isProduction, rename({ extname: '.min.css' })))
     .pipe(sourcemaps.write('.'))
     .pipe(dest(path.dest.assets))

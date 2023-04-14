@@ -97,8 +97,8 @@
 {% endblock %}
 {% block content %}
 <!-- Hero example -->
-<div class="container my-8">
-  <div class="section-1">
+<div class="mx-auto my-8 max-w-5xl">
+  <div class="p-8">
     <h1 class="title-xl">Title XL</h1>
     <div class="mx-auto">
       <p class="fs-5 mb-4">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most
@@ -106,17 +106,19 @@
         prebuilt components, and powerful JavaScript plugins.</p>
     </div>
   </div>
-  <div class="section-2">
+  <div class="p-8">
     <h2 class="title-lg">Buttons</h2>
-    <div class="">
-      <button type="button" class="btn btn-primary">Primary</button>
-      <button type="button" class="btn btn-secondary">Secondary</button>
+    <div class="my-2">
+      <button type="button"
+        class="px-6 py-3 rounded transition-colors cursor-pointer text-white bg-sky-800 hover:bg-sky-700">Primary</button>
+      <button type="button"
+        class="px-6 py-3 rounded transition-colors cursor-pointer bg-slate-100 hover:bg-slate-200">Secondary</button>
     </div>
     <div class="">
       <!-- Code samples -->
-      <pre class="code language-html"><code>&lt;button type="button" class="btn btn-primary"&gt;Primary&lt;/button&gt;
+      <pre class="my-2 code language-html"><code>&lt;button type="button" class="px-6 py-3 rounded transition-colors cursor-pointer text-white bg-sky-800 hover:bg-sky-700"&gt;Primary&lt;/button&gt;
 </code></pre>
-      <pre class="code language-html"><code>&lt;button type="button" class="btn btn-secondary"&gt;Secondary&lt;/button&gt;
+      <pre class="my-2 code language-html"><code>&lt;button type="button" class="px-6 py-3 rounded transition-colors cursor-pointer bg-slate-100 hover:bg-slate-200"&gt;Secondary&lt;/button&gt;
 </code></pre>
     </div>
     <a href="/" title="home">
